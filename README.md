@@ -1,3 +1,3 @@
 # Snake
-A snake clone using the Pygame set of modules.
+A snake clone made using the Pygame set of modules.
 

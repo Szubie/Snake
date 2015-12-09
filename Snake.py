@@ -47,7 +47,7 @@ def spawnFood():
 
     for num in range(len(snake)):
         if snake[num].x==xPossibleValues[randRoll1] and snake[num].y==yPossibleValues[randRoll2]:
-            return spawnFood()
+            spawnFood()
         else:
             return (xPossibleValues[randRoll1], yPossibleValues[randRoll2])
 
@@ -114,28 +114,12 @@ while running:
 
     screen.fill(black)
     
-    if foodExists==False:
-        randRoll=spawnFood()
-        food=pygame.draw.rect(screen, red, (randRoll[0], randRoll[1],rectangle_width,rectangle_height), 0)
-        foodExists=True
-
-    food=pygame.draw.rect(screen, red, (randRoll[0], randRoll[1],rectangle_width,rectangle_height), 0)
-    
     newX=snake[-1].x-size[0]/20
     newY=snake[-1].y-size[1]/20
     
     piece=snake[-1].copy()
-    """if direction==up:
-        piece.y+=-size[1]/20
-    elif direction==down:
-        piece.y+=size[1]/20
-    elif direction==left:
-        piece.x+=-size[0]/20
-    elif direction==right:
-        piece.x+=size[0]/20"""
-    if snake[0].x==food.x and snake[0].y==food.y:
-        snake.append(piece)
-        foodExists=False
+
+
     
     for num in reversed(range(1,len(snake))):
         if num is not 0:
@@ -155,6 +139,17 @@ while running:
     
     snake[0].x=playerX
     snake[0].y=playerY  
+    
+    if foodExists==False:
+        randRoll=spawnFood()
+        food=pygame.draw.rect(screen, red, (randRoll[0], randRoll[1],rectangle_width,rectangle_height), 0)
+        foodExists=True
+
+    food=pygame.draw.rect(screen, red, (randRoll[0], randRoll[1],rectangle_width,rectangle_height), 0)
+    
+    if snake[0].x==food.x and snake[0].y==food.y:
+        snake.append(piece)
+        foodExists=False
              
     for item in range(1,len(snake)-1):
         if snake[0].x==snake[item].x and snake[0].y==snake[item].y:

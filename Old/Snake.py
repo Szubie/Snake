@@ -58,6 +58,7 @@ down=1
 left=2
 right=3
 direction=0
+prospectiveDirection=0
 
 pressed_left = False
 pressed_right = False
@@ -91,16 +92,18 @@ while running:
                 
         if pressed_left:
             if direction!=right:
-                direction=left
+                prospectiveDirection=left
         if pressed_right:
             if direction!=left:
-                direction=3
+                prospectiveDirection=3
         if pressed_up:
             if direction!=down:
-                direction=0
+                prospectiveDirection=0
         if pressed_down:
             if direction!=up:
-                direction=1
+                prospectiveDirection=1
+                
+    direction=prospectiveDirection
             
     if direction==left:
         playerX+=-size[0]/20

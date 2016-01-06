@@ -1,9 +1,9 @@
 import pygame
 
-world_size = 20
-STARTING_FPS = 8
+world_size = 60  
+STARTING_FPS = 20
 fps_increment=80
-fps_cap=15
+fps_cap=35
 
 width=480
 height=480

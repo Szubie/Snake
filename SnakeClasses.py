@@ -149,17 +149,6 @@ class Segment(object):
         
 
 
-"""     
-test=Segment((0,0))
-test2=Segment((0,20))
-test3=Segment((0,40))
-test.appendNode(test2)
-test.appendNode(test3)
-
-
-snake=Snake(test)
-"""
-
 class Node(object):
     
     def __init__(self, position):
@@ -185,20 +174,16 @@ class Node(object):
     def setContainsFood(self, boolean):
         self.containsFood=boolean
         
-#testBlock=Node((0,0))
 
 class Board(object):
     
     def __init__(self):
-        #self.snake
-        #self.food
         self.grid=[]
         self.fillGrid()
         
     def updateNodes(self, snake):
         self.resetNodes()
         self.setSnakeNodes(snake)
-        #self.setFoodNodes(food)
         
     def resetNodes(self):
         for List in self.grid:
@@ -227,12 +212,6 @@ class Board(object):
                 for node in List:
                     if segment.getPosition()==node.getPosition():
                         node.containsSnake=True
-                        
-    #def setFoodNodes(self, food):
-    #    for List in self.grid:
-    #        for node in List:
-    #            if food.getPosition()==node.getPosition():
-    #                node.setContainsSnake(True)
 
     
     def fillGrid(self):    
@@ -248,8 +227,3 @@ class Board(object):
             yValue=0
             
             xValue+=scaling_factor_width
-"""
-board=Board()
-head=Segment((240,240))
-snake=Snake(head)
-board.updateNodes(snake)"""

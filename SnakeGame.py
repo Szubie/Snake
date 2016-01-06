@@ -26,19 +26,7 @@ class SnakeGame:
         
         self.board=Board()
         
-        self.head=Segment((240,240))
-        #self.test2=Segment((0,20))
-        #self.test3=Segment((0,40))
-        #self.test4=Segment((0,60))
-        #self.test5=Segment((0,80))
-        #self.test6=Segment((0,100))
-        #self.test7=Segment((0,120))
-        #self.head.appendNode(self.test2)
-        #self.head.appendNode(self.test3)
-        #self.head.appendNode(self.test4)
-        #self.head.appendNode(self.test5)
-        #self.head.appendNode(self.test6)
-        #self.head.appendNode(self.test7)
+        self.head=Segment((scaling_factor_width*(float(world_size)/2),scaling_factor_height*(float(world_size)/2)))
         self.snake=Snake(self.head)
         
         self.foodExists=False

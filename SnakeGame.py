@@ -21,7 +21,7 @@ class SnakeGame:
         
         self.board=Board()
         
-        self.head=Segment((scaling_factor_width*(float(world_size)/2),scaling_factor_height*(float(world_size)/2)))
+        self.head=Segment((world_size/2, world_size/2))
         self.snake=Snake(self.head)
         
         self.food=Food()
@@ -35,24 +35,24 @@ class SnakeGame:
                     running=False
                 self.playerInput.takeInput(event)
             if self.food.foodExists==False:
-                self.food.spawnFood(self.board)
-            if self.snake.foundFood(self.food.foodPosition)==True:
-                self.food.clearFood(self.board)
+                self.food.spawnFood(self.board.grid)
+            if self.snake.foundFood(self.food.foodGridPosition)==True:
+                self.food.clearFood(self.board.grid)
                 self.board.updateNodes(self.snake)
                 self.drawBoard() 
                 self.food.foodExists=False
                 self.snake.grow()
             self.snake.setDirection(self.playerInput.direction)
             self.playerInput.finaliseDirection()
+            
+            #self.board.resetNode(self.snake.getHead().getLastNode().getPosition())  This code doesn't work. For some reason, when food it picked up, this no longer calls the method.
+            
             self.snake.moveSnake()
-            self.board.updateNodes(self.snake)
-            self.drawBoard()
-            
-            
-            
             if self.snake.checkCollision()==True:
                 break
-            
+            self.board.updateNodes(self.snake)
+            self.drawBoard()
+               
             clock.tick(self.FPS)
 
             

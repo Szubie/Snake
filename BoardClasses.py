@@ -45,28 +45,27 @@ class Board(object):
             for node in List:
                 node.setContainsSnake(False)
                 #node.setContainsFood(False)
+                
+    def resetNode(self, nodeCoordinates):
+        xCoordinate=nodeCoordinates[0]
+        yCoordinate=nodeCoordinates[1]
+        self.grid[xCoordinate][yCoordinate].setContainsSnake(False)
         
     def setSnakeNodes(self, snake):
         segment=snake.getHead()
-        for List in self.grid:
-            for node in List:
-                if segment.getPosition()==node.getPosition():
-                    node.setContainsSnake(True)
+        xCoordinate=segment.getPosition()[0]
+        yCoordinate=segment.getPosition()[1]
+        self.grid[xCoordinate][yCoordinate].setContainsSnake(True)
                     
         segment=snake.getHead().getLastNode()
+        xCoordinate=segment.getPosition()[0]
+        yCoordinate=segment.getPosition()[1]
         while segment!=snake.getHead():
-            for List in self.grid:
-                for node in List:
-                    if segment.getPosition()==node.getPosition():
-                        node.setContainsSnake(True)
+            self.grid[xCoordinate][yCoordinate].setContainsSnake(True)
             segment=segment.getPreviousNode()
+            xCoordinate=segment.getPosition()[0]
+            yCoordinate=segment.getPosition()[1]
             
-        if snake.getHead().getLength()==1:
-            segment=snake.getHead().getLastNode()
-            for List in self.grid:
-                for node in List:
-                    if segment.getPosition()==node.getPosition():
-                        node.containsSnake=True
 
     
     def fillGrid(self):    

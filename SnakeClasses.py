@@ -14,16 +14,16 @@ class Snake(object):
     def moveHead(self):
         if self.direction==left:
             originalPosition=self.head.getPosition()
-            self.head.setPosition((originalPosition[0]-scaling_factor_width, originalPosition[1]))
+            self.head.setPosition((originalPosition[0]-1, originalPosition[1]))
         elif self.direction==right:
             originalPosition=self.head.getPosition()
-            self.head.setPosition((originalPosition[0]+scaling_factor_width, originalPosition[1]))
+            self.head.setPosition((originalPosition[0]+1, originalPosition[1]))
         elif self.direction==up:
             originalPosition=self.head.getPosition()
-            self.head.setPosition((originalPosition[0],originalPosition[1]-scaling_factor_height))
+            self.head.setPosition((originalPosition[0],originalPosition[1]-1))
         elif self.direction==down:
             originalPosition=self.head.getPosition()
-            self.head.setPosition((originalPosition[0],originalPosition[1]+scaling_factor_height))      
+            self.head.setPosition((originalPosition[0],originalPosition[1]+1))      
             
     def updateSnake(self):
         segment=self.head.getLastNode()
@@ -63,13 +63,13 @@ class Snake(object):
         xCoordinate=position[0]
         yCoordinate=position[1]
         
-        if xCoordinate<0 or xCoordinate>(width-scaling_factor_width):
+        if xCoordinate<0 or xCoordinate>(world_size-1):
             return True
-        if yCoordinate<0 or yCoordinate>(height-scaling_factor_height):
+        if yCoordinate<0 or yCoordinate>(world_size-1):
             return True
         
-    def foundFood(self, foodPosition):
-       if self.head.getPosition()==foodPosition:
+    def foundFood(self, foodGridPosition):
+       if self.head.getPosition()==foodGridPosition:
            return True
         
     def grow(self):
@@ -101,11 +101,12 @@ class SnakeAI(Snake):
 class Segment(object):
     """A linked list, which stores the body of the snake."""
     
-    def __init__(self, position):
-        self.position=position
+    def __init__(self, grid_position):
+        self.grid_position=grid_position
         self.previousNode=None
         self.nextNode=None
         self.length=1
+
         
     def appendNode(self, Segment):
         lastNode=self.getLastNode()
@@ -130,10 +131,10 @@ class Segment(object):
             return Segment.getLastNode(self.getNextNode())
             
     def getPosition(self):
-        return self.position
+        return self.grid_position
         
     def setPosition(self,Coordinates):
-        self.position=Coordinates
+        self.grid_position=Coordinates
         
     def getLength(self):
         return self.length
